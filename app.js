@@ -4,10 +4,13 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var register = require('./routes/register');
+var messages = require('./lib/messages');
 
 var app = express();
 
@@ -17,6 +20,14 @@ app.set('view engine', 'ejs');
 
 app.use(favicon());
 app.use(logger('dev'));
+app.use(methodOverride());
+app.use(session({ 
+   secret: 'my secret',
+   resave: true,
+   saveUninitialized: true
+}));
+app.use(messages);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
