@@ -7,10 +7,13 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
 
+//###############  Routes  ##################################################### 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var register = require('./routes/register');
 var login = require('./routes/login');
+var entries = require('./routes/entries');
+
 var messages = require('./lib/messages');
 var user = require('./lib/middleware/user');
 
@@ -34,7 +37,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(user);
 app.use(messages);
-app.use('/', routes);
+app.use('/', entries.list);
 app.use('/users', users);
 app.get('/register', register.form);
 app.post('/register', register.submit);
