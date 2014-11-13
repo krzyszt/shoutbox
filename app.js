@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var register = require('./routes/register');
 var login = require('./routes/login');
 var messages = require('./lib/messages');
+var user = require('./lib/middleware/user');
 
 var app = express();
 
@@ -27,13 +28,12 @@ app.use(session({
    resave: true,
    saveUninitialized: true
 }));
-app.use(messages);
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(user);
+app.use(messages);
 app.use('/', routes);
 app.use('/users', users);
 app.get('/register', register.form);
