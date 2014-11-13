@@ -44,6 +44,7 @@ app.post('/register', register.submit);
 app.get('/login', login.form);
 app.post('/login',login.submit);
 app.get('/logout', login.logout);
+app.get('/posts', entries.list);
 app.get('/post', entries.form);
 app.post('/post', entries.submit);
 
