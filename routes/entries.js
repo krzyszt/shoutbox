@@ -10,7 +10,15 @@ exports.list = function(req,res,next){
         title: 'Entries',
         entries: entries
      });
-  });
-   
+  });   
+};
+
+exports.form = function(req,res){
+   res.render('post',{
+      title: 'Post'
+   });
+};
+
+exports.submit = function(req,res){
    
 };
