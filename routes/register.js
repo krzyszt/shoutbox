@@ -16,10 +16,9 @@ module.exports.submit = function(req,res, next){
           res.redirect('back');
        } else {
           user = new User({
-             name: user.name,
+             name: data.name,
              pass: data.pass
           });
-          
           user.save(function(err){
              if (err) {
                 return next(err);

@@ -13,6 +13,7 @@ module.exports.submit = function(req,res, next){
       if(user){
          req.session.uid = user.id;
          res.redirect('/');
+         
       } else {
          res.error("Sorry! Invalid credentials.");
          res.redirect('back');
