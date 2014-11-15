@@ -49,7 +49,6 @@ app.post('/login',login.submit);
 app.get('/logout', login.logout);
 
 //#########  Entries #################################################
-app.get('/posts', page(Entry.count,5), entries.list);
 app.get('/post', entries.form);
 app.post(
    '/post', 
@@ -57,6 +56,7 @@ app.post(
    validate.lengthAbove('entry[title]',4),
    entries.submit
 );
+app.get('/:page?',page(Entry.count,5), entries.list);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
